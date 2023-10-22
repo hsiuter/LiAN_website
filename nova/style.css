@@ -1,0 +1,28 @@
+@import "https://fonts.googleapis.com/css2?family=Megrim&display=swap";
+
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
+#word {
+    font-family: Megrim, cursive;
+    font-size: 20vh;
+    position: absolute;
+    margin: 10;
+    /*bottom: 0;*/
+    color: #fc0;
+    -webkit-text-stroke: 0.15vh #c0f;
+}
+
+#circleDiv {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

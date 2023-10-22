@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>栗安LiAN的歌单</title>
+    <!-- <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="icon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+
+<body oncontextmenu="return false;" ondragstart="return false;">
+    <div id="particles-js"></div>
+    <a href="https://live.bilibili.com/27895178?live_from=85001&spm_id_from=444.41.live_users.item.click"
+        target="_blank">
+        <img id="live_streaming_img" src="./bilibili_logo_padded.png" alt="">
+    </a>
+    <div>
+        <img id="gif" src="./anan.gif" alt="">
+    </div>
+    <div id="flex">
+        <div id="container">
+            <div class="flex_30">
+                <div id="img_div">
+                    <img id="intro_img" src="./intro_1.jpg" alt="">
+                </div>
+                <p class="intro_p">栗安LiAN</p>
+                <p class="intro_p">和她的栗子小曲</p>
+                <p class="intro_p_s">点歌名复制</p>
+            </div>
+
+            <div class="flex_70">
+                <div id="button_div">
+                    <button type="button" id="chineseBtn" class="btn-0">中文</button>
+                    <button type="button" id="englishBtn">英文</button>
+                    <button type="button" id="japaneseBtn">日文</button>
+                </div>
+                <div id="search-bar_div">
+                    <input class="search-bar" type="text" name="search" id="search" placeholder="输入歌名">
+                </div>
+                <div id="table_div">
+                    <table id="table-4" cellspacing="0">
+                        <thead>
+                            <tr class="test">
+                                <th>歌名</th>
+                                <th>歌手</th>
+                                <th>语言</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    &emsp;&emsp;
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        // 1.将每一行的数据作为一个对象，然后将这些对象封装在一个数组中（没有后台服务器的情况下，暂时采用这种方式添加）
+
+        var datas = [{
+            name: 'song1',
+            subject: 'hsiuter',
+            scores: '中文'
+        }, {
+            name: 'song2',
+            subject: 'hsiuter',
+            scores: '中文'
+        }, {
+            name: 'song3',
+            subject: 'hsiuter',
+            scores: '中文'
+        }, {
+            name: 'song4',
+            subject: 'hsiuter',
+            scores: '日文'
+        }, {
+            name: 'song5',
+            subject: 'hsiuter',
+            scores: '英文'
+        }]
+
+        // datas = $.ajax({
+        //     url: "./song.json",//json文件位置，文件名
+        //     type: "GET",//请求方式为get
+        //     dataType: "json", //返回数据格式为json
+        //     async: false,
+        //     success: function (data) {//请求成功完成后要执行的方法 
+        //     }
+        // });
+        // 2、添加行tr，利用for循环（i的数量与数组的长度有关）
+        // 获取元素
+
+        $.getJSON('songs.json', function (data) {
+            var datas = data;
+            var tbody = document.querySelector('tbody');
+            var text = "";
+            var activeLanguage = 'all';
+
+            function updateTable() {
+                var searchText = $('#search').val().toLowerCase();
+                var filteredData = datas.filter(function (song) {
+                    var matchesLanguage = activeLanguage === 'all' || song.scores === activeLanguage;
+                    var matchesSearch = song.name.toLowerCase().includes(searchText);
+                    return matchesLanguage && matchesSearch;
+                });
+
+                // 清空歌曲列表
+                tbody.innerHTML = '';
+
+                // 重新生成过滤后的歌曲列表
+                filteredData.forEach(function (song) {
+                    var tr = document.createElement('tr');
+                    tbody.appendChild(tr);
+
+                    for (var k in song) {
+                        var td = document.createElement('td');
+                        if (k === "name") {
+                            td.innerHTML = "<a class='copy' onclick='copy(this)' href='javascript:;' >" + song[k] + "</a>";
+                        } else if (k == "ps") {
+                            var td = document.createElement('td');
+                            if (song[k] == "") {
+                                td.innerHTML = " ";
+                                tr.appendChild(td);
+                            } else {
+                                td.innerHTML = song[k];
+                                tr.appendChild(td);
+                            }
+                        } else {
+                            td.innerHTML = song[k];
+                        }
+                        tr.appendChild(td);
+                    }
+                });
+            }
+
+            // 初始化页面时显示所有歌曲
+            updateTable();
+
+            // 监听搜索栏输入事件
+            $('#search').on('input', updateTable);
+
+            function toggleButton(button, language) {
+                if (button.classList.contains('active')) {
+                    button.classList.remove('active');
+                    activeLanguage = 'all';
+                } else {
+                    chineseBtn.classList.remove('active');
+                    englishBtn.classList.remove('active');
+                    japaneseBtn.classList.remove('active');
+                    button.classList.add('active');
+                    activeLanguage = language;
+                }
+                updateTable();
+            }
+
+            var chineseBtn = document.getElementById('chineseBtn');
+            var englishBtn = document.getElementById('englishBtn');
+            var japaneseBtn = document.getElementById('japaneseBtn');
+
+            chineseBtn.addEventListener('click', function () {
+                toggleButton(chineseBtn, '中文');
+            });
+
+            englishBtn.addEventListener('click', function () {
+                toggleButton(englishBtn, '英文');
+            });
+
+            japaneseBtn.addEventListener('click', function () {
+                toggleButton(japaneseBtn, '日文');
+            });
+        });
+        function copy(that) {
+            var inp = document.createElement('input');
+            document.body.appendChild(inp)
+            inp.value = "点歌 " + that.textContent
+            inp.select();
+            document.execCommand('copy', false);
+            inp.remove();
+        }
+
+        const colorButton_c = document.getElementById('chineseBtn');
+        const colorButton_e = document.getElementById('englishBtn');
+        const colorButton_j = document.getElementById('japaneseBtn');
+        const colors = ['#dfd8e8', '#5f4a79',]; // 可以自定义颜色列表
+
+        let chineseBtn_state = 0;
+        let englishBtn_state = 0;
+        let japaneseBtn_state = 0;
+
+        colorButton_c.addEventListener('click', () => {
+            if (chineseBtn_state == 0) {
+                colorButton_c.style.backgroundColor = '#5f4a79';
+                colorButton_c.style.color = '#ffffff';
+                chineseBtn_state = 1;
+                englishBtn_state = 0;
+                japaneseBtn_state = 0;
+                colorButton_e.style.backgroundColor = '#dfd8e8';
+                colorButton_e.style.color = '#000000';
+                colorButton_j.style.backgroundColor = '#dfd8e8';
+                colorButton_j.style.color = '#000000';
+            } else {
+                colorButton_c.style.backgroundColor = '#dfd8e8';
+                colorButton_c.style.color = '#000000';
+                chineseBtn_state = 0;
+            };
+
+        });
+        colorButton_e.addEventListener('click', () => {
+            if (englishBtn_state == 0) {
+                colorButton_e.style.backgroundColor = '#5f4a79';
+                colorButton_e.style.color = '#dfd8e8';
+                chineseBtn_state = 0;
+                englishBtn_state = 1;
+                japaneseBtn_state = 0;
+                colorButton_c.style.backgroundColor = '#dfd8e8';
+                colorButton_c.style.color = '#000000';
+                colorButton_j.style.backgroundColor = '#dfd8e8';
+                colorButton_j.style.color = '#000000';
+            } else {
+                colorButton_e.style.backgroundColor = '#dfd8e8';
+                colorButton_e.style.color = '#000000';
+                englishBtn_state = 0;
+            };
+
+        });
+        colorButton_j.addEventListener('click', () => {
+            if (japaneseBtn_state == 0) {
+                colorButton_j.style.backgroundColor = '#5f4a79';
+                colorButton_j.style.color = '#dfd8e8';
+                chineseBtn_state = 0;
+                englishBtn_state = 0;
+                japaneseBtn_state = 1;
+                colorButton_c.style.backgroundColor = '#dfd8e8';
+                colorButton_c.style.color = '#000000';
+                colorButton_e.style.backgroundColor = '#dfd8e8';
+                colorButton_e.style.color = '#000000';
+            } else {
+                colorButton_j.style.backgroundColor = '#dfd8e8';
+                colorButton_j.style.color = '#000000';
+                japaneseBtn_state = 0;
+            };
+
+        });
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 15,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ["#ffffff"]
+                },
+                shape: {
+                    type: ["circle"],
+                    stroke: {
+                        width: 0,
+                        color: "#fff"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    },
+                    image: {
+                        src: "https://cdn.freebiesupply.com/logos/large/2x/slack-logo-icon.png",
+                        width: 100,
+                        height: 100
+                    }
+                },
+                opacity: {
+                    value: 1,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 8,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 10,
+                        size_min: 10,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#808080",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 5,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+    </script>
+</body>
+
+</html>
