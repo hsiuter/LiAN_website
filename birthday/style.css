@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Rouge+Script&display=swap');
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 10vw;
+    background-color: #222222;
+}
+
+#whiteScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #222222;
+    z-index: 9999;
+    /* Ensure it's on top of other elements */
+}
+
+#countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cookie', cursive;
+    color: #ffffff;
+    /* 不换行 */
+    white-space: nowrap;
+    /* width: 70%; */
+}
+
+#confetti {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+#greeting {
+    width: auto;
+    position: absolute;
+    font-family: 'Cookie', cursive;
+    font-size: 100px;
+    color: #ffffff;
+    /* transform: scale(0); */
+    z-index: 9998;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 1s;
+}
+
+/* #greeting.active {
+    opacity: 1;
+} */
+
+
+#greeting_name {
+    width: auto;
+    position: absolute;
+    font-family: 'Cookie', cursive;
+    font-size: 100px;
+    color: #ffffff;
+    /* transform: scale(0); */
+    z-index: 9998;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 1s;
+}
+
+/* #greeting_name.active {
+    opacity: 1;
+} */
+
+
+.cake {
+    position: relative;
+    top: 500px;
+    margin: auto;
+    width: 200px;
+    height: 60px;
+    background: #f2bbc5;
+    border-radius: 100%;
+
+
+    box-shadow:
+        0px 4px 0px #f2bbc5,
+        0px 8px 0px #f2bbc5,
+
+        0px 12px 0px #7b5d4b,
+        0px 16px 0px #7b5d4b,
+        0px 20px 0px #7b5d4b,
+        0px 24px 0px #7b5d4b,
+        0px 28px 0px #7b5d4b,
+        0px 32px 0px #7b5d4b,
+
+        0px 36px 0px #fff1c7,
+        0px 40px 0px #fff1c7,
+        0px 44px 0px #fff1c7,
+        0px 48px 0px #fff1c7,
+
+        0px 52px 0px #f2bbc5,
+        0px 56px 0px #f2bbc5,
+
+        0px 60px 0px #7b5d4b,
+        0px 64px 0px #7b5d4b,
+        0px 68px 0px #7b5d4b,
+        0px 72px 0px #7b5d4b,
+        0px 76px 0px #7b5d4b,
+        0px 80px 0px #7b5d4b,
+
+        15px 84px 0px #fffdfd,
+        -15px 84px 0px #fffdfd,
+        15px 88px 0px #fffdfd,
+        0px 90px 0px #fffdfd,
+        -15px 88px 0px #fffdfd;
+}
+
+.plate {
+    position: absolute;
+    height: 90px;
+    width: 300px;
+    bottom: -95px;
+    left: 50%;
+    margin-left: -150px;
+    border-radius: 100%;
+    background: #fff;
+    box-shadow: 0px 6px 0px #898989;
+    z-index: -1;
+}
+
+.candle {
+    position: relative;
+    height: 50px;
+    width: 12px;
+    top: 530px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+#flame {
+    position: absolute;
+    z-index: 10;
+}
+
+
+.out {
+    background-color: #795548;
+    width: 2px;
+    height: 10px;
+    top: -8px;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.lit {
+    background-color: #ffc950;
+    width: 15px;
+    height: 35px;
+    filter: blur(1px);
+
+    /*  Info on border radius. http://www.css3.info/preview/rounded-border/ */
+
+    border-top-left-radius: 10px 35px;
+    border-top-right-radius: 10px 35px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    top: -34px;
+    margin: auto;
+
+    /*   http://www.css3.info/preview/box-shadow/ */
+    box-shadow:
+        0 0 17px 7px rgba(244, 231, 112, 0.71);
+    transform-origin: bottom;
+    animation: flicker 3s ease-in-out alternate infinite;
+}
+
+@keyframes flicker {
+    0% {
+        transform: skewX(5deg);
+        box-shadow:
+            0 0 17px 10px rgba(244, 231, 112, 0.71);
+    }
+
+    25% {
+        transform: skewX(-5deg);
+        box-shadow:
+            0 0 17px 5px rgba(244, 231, 112, 0.71);
+    }
+
+    50% {
+        transform: skewX(10deg);
+        box-shadow:
+            0 0 17px 7px rgba(244, 231, 112, 0.71);
+    }
+
+    75% {
+        transform: skewX(-10deg);
+        box-shadow:
+            0 0 17px 5px rgba(244, 231, 112, 0.71);
+    }
+
+    100% {
+        transform: skewX(5deg);
+        box-shadow:
+            0 0 17px 10px rgba(244, 231, 112, 0.71);
+    }
+}
