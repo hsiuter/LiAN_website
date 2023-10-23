@@ -13,19 +13,97 @@
 </head>
 
 <body>
+    <div id="merrywrap" class="merrywrap">
+        <canvas id="snowfall"></canvas>
+        <div class="giftbox">
+            <div class="cover">
+                <div></div>
+            </div>
+            <div class="box"></div>
+        </div>
+        <div class="icons" id="web_img_container">
+            <img src="./web_1.png" alt="" class="web_img_none web_img_1">
+            <img src="./web_2.png" alt="" class="web_img_none web_img_2">
+            <img src="./web_3.png" alt="" class="web_img_none web_img_3">
+            <img src="./web_4.png" alt="" class="web_img_none web_img_4">
+        </div>
+        <div id="web_intro_text">https://lianofficial.netlify.app/</div>
+    </div>
+    </div>
     <div id="whiteScreen">
         <div id="countdown"></div>
+        <div id="music_test">
+            点击进行声音测试！
+            <img src="./earphone.png" alt="" class="earphone">
+            请确保在有背景音乐的情况下进行该活动！
+        </div>
     </div>
+    <div id="darkOverlay"></div>
+    <audio id="myAudio" preload="auto">
+        <source src="./open_light_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_1" preload="auto">
+        <source src="./gift_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_2" preload="auto">
+        <source src="./gift_intro_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_3" preload="auto">
+        <source src="./gift_end_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_4" preload="auto">
+        <source src="./end_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_5" preload="auto">
+        <source src="./birthdays_song_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_6" preload="auto">
+        <source src="./candle_1_1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio_7" preload="auto">
+        <source src="./bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <canvas id="confetti"></canvas>
     <div id="greeting">Happy Birthday</div>
     <div id="greeting_name">LiAN</div>
-    <div class="candle">
+    <div class="candle" id="candle">
         <div id="flame" class="lit"></div>
     </div>
 
-    <div class="cake">
+    <div class="cake" id="cake">
         <div class="plate"></div>
     </div>
+
+    <div class="card" id="card">
+        <div class="imgBox">
+            <div class="bark"></div>
+            <img src="https://image.ibb.co/fYzTrb/lastofus.jpg">
+        </div>
+        <div class="details">
+            <h4 class="color1">小恐龙是小恐龙！</h2>
+                <h4 class="color2 margin">生日快乐</h3>
+                    <p>安安</p>
+                    <p>时间过的好快！</p>
+                    <p>没想到一下子就到了生日</p>
+                    <p>我很高兴能遇见你</p>
+                    <p>谢谢你一直以来的陪伴~</p>
+                    <p>接下来的日子也请多指教！</p>
+                    <p>一起迈向下一个生日吧！</p>
+                    <p>哈哈哈哈哈~</p>
+                    <p class="text-right">安安！生日快乐！</p>
+                    <p class="text-right">阿修</p>
+        </div>
+    </div>
+
 </body>
 
 <script src="script.js"></script>

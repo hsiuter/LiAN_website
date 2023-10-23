@@ -8,6 +8,7 @@ body {
     padding: 0;
     font-size: 10vw;
     background-color: #222222;
+    overflow: hidden;
 }
 
 #whiteScreen {
@@ -90,6 +91,7 @@ body {
     height: 60px;
     background: #f2bbc5;
     border-radius: 100%;
+    transition: opacity 1s;
 
 
     box-shadow:
@@ -147,6 +149,7 @@ body {
     background-color: #fff;
     border-radius: 4px;
     z-index: 10;
+    transition: opacity 1s;
 }
 
 #flame {
@@ -216,4 +219,561 @@ body {
         box-shadow:
             0 0 17px 10px rgba(244, 231, 112, 0.71);
     }
+}
+
+#darkOverlay {
+    display: none;
+    /* 默认情况下不显示 */
+    position: fixed;
+    /* 固定位置 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 使用半透明的黑色背景 */
+    z-index: 9999;
+    /* 保证在其他内容之上 */
+}
+
+/* 礼物盒 */
+.merrywrap {
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: -1;
+    background-color: #222222;
+    opacity: 0;
+    transition: opacity 0.7s
+}
+
+.giftbox {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    left: 50%;
+    margin-left: -150px;
+    bottom: 0;
+    z-index: 10;
+}
+
+.giftbox>div {
+    background: #34495e;
+    position: absolute;
+}
+
+.giftbox>div:after,
+.giftbox>div:before {
+    position: absolute;
+    content: "";
+    top: 0;
+}
+
+.giftbox:after {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    content: "Click Me!";
+    left: 0;
+    bottom: 0;
+    font-size: 24px;
+    text-align: center;
+    transform: rotate(-20deg);
+    transform-origin: 0 0;
+}
+
+.giftbox .cover {
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 25%;
+    z-index: 2;
+}
+
+.giftbox .cover:before {
+    position: absolute;
+    height: 100%;
+    left: 50%;
+    width: 50px;
+    transform: translateX(-50%);
+    background: #fdc56d;
+}
+
+.giftbox .cover>div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 50%;
+    top: -50px;
+    transform: translateX(-50%);
+}
+
+.giftbox .cover>div:before,
+.giftbox .cover>div:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    box-shadow: inset 0 0 0 15px #fdc56d;
+    border-radius: 30px;
+    transform-origin: 50% 100%;
+}
+
+.giftbox .cover>div:before {
+    transform: translateX(-45%) skewY(40deg);
+}
+
+.giftbox .cover>div:after {
+    transform: translateX(45%) skewY(-40deg);
+}
+
+.giftbox .box {
+    right: 5%;
+    left: 5%;
+    height: 80%;
+    bottom: 0;
+}
+
+.giftbox .box:before {
+    width: 50px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fdc56d;
+}
+
+.giftbox .box:after {
+    width: 100%;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.icons {
+    position: absolute;
+    left: 0;
+    /* top: 50%; */
+    width: 100% !important;
+    height: 100% !important;
+    transform: translateY(-50%);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.step-1 .giftbox {
+    animation: wobble 0.5s linear infinite forwards;
+}
+
+.step-1 .cover {
+    animation: wobble 0.5s linear infinite 0.1s forwards;
+}
+
+
+.step-2 .giftbox:after {
+    opacity: 0;
+}
+
+.step-3 .giftbox,
+.step-4 .giftbox {
+    opacity: 0;
+    z-index: 1;
+}
+
+.step-3 .giftbox:after,
+.step-4 .giftbox:after {
+    opacity: 0;
+}
+
+.step-2 .giftbox .cover {
+    animation: flyUp 0.4s ease-in forwards;
+}
+
+.step-2 .giftbox .box {
+    animation: flyDown 0.2s ease-in 0.05s forwards;
+}
+
+@keyframes wobble {
+    25% {
+        transform: rotate(4deg);
+    }
+
+    75% {
+        transform: rotate(-2deg);
+    }
+}
+
+@keyframes flyUp {
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+@keyframes flyDown {
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.step-2 .web_img_none {
+    opacity: 1;
+    width: 30%;
+    /* height: 30%; */
+    transition: opacity 0.7s;
+}
+
+.step-3 .web_img_none {
+    opacity: 1;
+    width: 30%;
+    height: 30%;
+}
+
+.step-4 .web_img_none {
+    opacity: 1;
+    width: 30%;
+    height: 30%;
+}
+
+.web_img_none {
+    opacity: 0;
+    position: absolute;
+    width: 30%;
+    height: 30%;
+}
+
+.step-2 .web_img_1 {
+    top: 60%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    rotate: -15deg;
+    animation: moveBox 0.2s linear;
+}
+
+.step-3 .web_img_1 {
+    top: 60%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    rotate: -15deg;
+    /* animation: moveBox 5s linear; */
+}
+
+.step-4 .web_img_1 {
+    top: 60%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    rotate: -15deg;
+    /* animation: moveBox 5s linear; */
+}
+
+@keyframes moveBox {
+    0% {
+        top: 100%;
+        left: 50%;
+        /* 开始时，方框在左边 */
+    }
+
+    100% {
+        top: 60%;
+        left: 20%;
+        /* 结束时，方框在接近右边（考虑到方框的宽度） */
+    }
+}
+
+.step-2 .web_img_2 {
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    rotate: 15deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+    animation: moveBox2 0.2s linear;
+}
+
+.step-3 .web_img_2 {
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    rotate: 15deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+.step-4 .web_img_2 {
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    rotate: 15deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+@keyframes moveBox2 {
+    0% {
+        top: 100%;
+        left: 50%;
+        /* 开始时，方框在左边 */
+    }
+
+    100% {
+        top: 60%;
+        left: 40%;
+        /* 结束时，方框在接近右边（考虑到方框的宽度） */
+    }
+}
+
+.step-2 .web_img_3 {
+    top: 70%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    rotate: -10deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+    animation: moveBox3 0.2s linear;
+}
+
+.step-3 .web_img_3 {
+    top: 70%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    rotate: -10deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+.step-4 .web_img_3 {
+    top: 70%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    rotate: -10deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+@keyframes moveBox3 {
+    0% {
+        top: 100%;
+        left: 50%;
+        /* 开始时，方框在左边 */
+    }
+
+    100% {
+        top: 70%;
+        left: 60%;
+        /* 结束时，方框在接近右边（考虑到方框的宽度） */
+    }
+}
+
+.step-2 .web_img_4 {
+    top: 70%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    rotate: 5deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+    animation: moveBox4 0.2s linear;
+}
+
+.step-3 .web_img_4 {
+    top: 70%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    rotate: 5deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+.step-4 .web_img_4 {
+    top: 70%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    rotate: 5deg;
+    transition: top 0.7s;
+    transition: left 0.7s;
+}
+
+@keyframes moveBox4 {
+    0% {
+        top: 100%;
+        left: 50%;
+        /* 开始时，方框在左边 */
+    }
+
+    100% {
+        top: 70%;
+        left: 80%;
+        /* 结束时，方框在接近右边（考虑到方框的宽度） */
+    }
+}
+
+#web_intro_text {
+    color: white;
+    position: absolute;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+h4 {
+    font-size: 26px;
+    line-height: 1px;
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+.color1 {
+    color: #1BBC9B;
+    font-family: 'Courier New', Courier, monospace !important;
+}
+
+/*MOUNTAIN MEADOW*/
+.color2 {
+    color: #1BBC9B;
+    font-family: 'Courier New', Courier, monospace !important;
+    /*TALL POPPY*/
+}
+
+
+.card {
+    opacity: 0;
+    color: #013243;
+    /*SHERPA BLUE*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    background: #e0e1dc;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) perspective(2000px);
+    box-shadow: inset 300px 0 50px rgba(0, 0, 0, .5), 20px 0 60px rgba(0, 0, 0, .5);
+    transition: 1s;
+
+}
+
+.card:hover {
+    transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
+    box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5), 0 10px 100px rgba(0, 0, 0, .5);
+}
+
+.card:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #BAC1BA;
+    transform-origin: bottom;
+    transform: skewX(-45deg);
+}
+
+.card:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 5px;
+    height: 100%;
+    background: #92A29C;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+.card .imgBox {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: left;
+    transition: .7s;
+}
+
+.card .bark {
+    position: absolute;
+    background: #e0e1dc;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .7s;
+}
+
+.card .imgBox img {
+    min-width: 250px;
+    max-height: 400px;
+}
+
+.card:hover .imgBox {
+    transform: rotateY(-135deg);
+}
+
+.card:hover .bark {
+    opacity: 1;
+    transition: .6s;
+    box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+}
+
+.card .details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 0 0 50px;
+    z-index: -1;
+    margin-top: 70px;
+}
+
+.card .details p {
+    font-size: 15px;
+    line-height: 5px;
+    transform: rotate(-10deg);
+    padding: 0 0 0 20px;
+}
+
+.card .details h4 {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+#music_test {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: #e7e7e7; */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.earphone {
+    width: 20px;
 }

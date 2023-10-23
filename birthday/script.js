@@ -1,8 +1,54 @@
 document.getElementById('flame').addEventListener('click', flameToggle);
 
 function flameToggle() {
-    this.classList.toggle('lit');
-    this.classList.toggle('out');
+    if (this.classList.contains('lit')) {
+        this.classList.remove('lit');
+        this.classList.add('out');
+        otherEventTrigger();
+    }
+}
+
+function otherEventTrigger() {
+    // 在这里编写你想要触发的其他事件的代码
+    console.log('其他事件被触发了!');
+    document.getElementById('darkOverlay').style.display = 'block';
+    let audio = document.getElementById('myAudio');
+    let audio7 = document.getElementById('myAudio_7');
+    audio7.volume = 0.03;
+    audio7.volume = 0.03;
+    audio7.loop = true;
+    // 当音频播放完毕后，使场景变亮
+    audio.addEventListener('ended', function () {
+        document.getElementById('darkOverlay').style.display = 'none';
+        const greeting_go = document.getElementById("greeting");
+        const greeting_n_go = document.getElementById("greeting_name");
+        const confetti_go = document.getElementById("confetti");
+        const cake_go = document.getElementById("cake");
+        const candle_go = document.getElementById("candle");
+        const merrywrap_in = document.getElementById("merrywrap");
+        confetti.style.opacity = "0";
+        let audio_1 = document.getElementById('myAudio_1');
+        setTimeout(() => {
+            audio_1.play();
+        }, 1000);
+        setTimeout(() => {
+            greeting_go.style.opacity = "0";
+            greeting_n_go.style.opacity = "0";
+            confetti_go.style.opacity = "0";
+            cake_go.style.opacity = "0";
+            candle_go.style.opacity = "0";
+        }, 1000);
+        setTimeout(() => {
+            merrywrap_in.style.zIndex = '10000';
+            merrywrap_in.style.opacity = '1';
+        }, 3000);
+
+    });
+    setTimeout(() => {
+        audio.play();
+        audio7.play();
+    }, 1000);
+
 }
 
 var retina = window.devicePixelRatio,
@@ -401,18 +447,28 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    let audio_7 = document.getElementById('myAudio_7');
+    document.getElementById("music_test").addEventListener("click", function () {
+        audio_7.volume = 0.03;
+        audio_7.loop = true;
+        audio_7.play();
+    });
+    // let audio_7 = document.getElementById('myAudio_7');
+    // audio_7.volume = 0.03;
+    // audio_7.loop = true;
     // Set the date when the white screen should disappear.
     var targetDate = new Date(2023, 9, 24);  // Month is 0-indexed, so 9 is October.
-
     function updateCountdown() {
         var now = new Date();
         var timeDifference = targetDate - now;
-
+        let audio_5 = document.getElementById('myAudio_5');
+        let audio_6 = document.getElementById('myAudio_6');
         const greeting = document.getElementById("greeting");
         const greeting_n = document.getElementById("greeting_name");
         const confetti = document.getElementById("confetti");
 
         if (timeDifference <= 0) {
+            audio_7.pause();
             clearInterval(interval);
             document.getElementById("whiteScreen").style.display = "none";
             setTimeout(() => {
@@ -425,6 +481,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 1500);
             setTimeout(() => {
                 confetti.style.opacity = "1";
+                audio_5.play();
+                audio_5.addEventListener('ended', function () {
+                    setTimeout(() => {
+                        audio_6.play();
+                    }, 1000);
+                });
             }, 2000);
             return;
         }
@@ -440,3 +502,62 @@ document.addEventListener("DOMContentLoaded", function () {
     var interval = setInterval(updateCountdown, 1000);
     updateCountdown();
 });
+
+window.onload = function () {
+    var merrywrap = document.getElementById("merrywrap");
+    var box = merrywrap.getElementsByClassName("giftbox")[0];
+    var step = 1;
+    var stepMinutes = [2000, 2000, 1000, 1000];
+    function init() {
+        box.addEventListener("click", openBox, false);
+    }
+    function stepClass(step) {
+        merrywrap.className = 'merrywrap';
+        merrywrap.className = 'merrywrap step-' + step;
+    }
+    function openBox() {
+        let audio_2 = document.getElementById('myAudio_2');
+        let audio_3 = document.getElementById('myAudio_3');
+        let audio_4 = document.getElementById('myAudio_4');
+        if (step === 1) {
+            box.removeEventListener("click", openBox, false);
+        }
+        stepClass(step);
+        if (step === 3) {
+            audio_2.play();
+            const web_intro_text_in = document.getElementById("web_intro_text");
+            web_intro_text_in.style.opacity = "1";
+        }
+        if (step === 4) {
+            return;
+        }
+        setTimeout(openBox, stepMinutes[step - 1]);
+        step++;
+        audio_2.addEventListener('ended', function () {
+            setTimeout(() => {
+                audio_3.play();
+            }, 1000);
+
+            audio_3.addEventListener('ended', function () {
+                const web_img_container = document.getElementById("web_img_container");
+                const web_intro_text_in = document.getElementById("web_intro_text");
+                setTimeout(() => {
+                    web_img_container.style.transition = "opacity 1s";
+                    web_img_container.style.opacity = "0";
+                    web_intro_text_in.style.opacity = "0";
+                    audio_4.play();
+                    audio_4.addEventListener('ended', function () {
+                        const card = document.getElementById("card");
+                        card.style.transition = "opacity 1s";
+                        card.style.opacity = "1";
+                        card.style.zIndex = "20000";
+                    });
+
+                }, 2000);
+            });
+        });
+    }
+
+    init();
+
+}
