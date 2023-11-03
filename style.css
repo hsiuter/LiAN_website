@@ -416,7 +416,7 @@ p {
     top: 15%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 170px;
+    font-size: 9vw;
 }
 
 .content span {
@@ -634,7 +634,7 @@ p {
     top: 80%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 170px;
+    font-size: 9vw;
     color: #eee;
 
 }
