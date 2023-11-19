@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="icon.ico" />
     <!-- <script src="./dist/js/timeline.min.js"></script> -->
     <!-- <link href="./dist/css/timeline.min.css" rel="stylesheet" /> -->
 </head>
@@ -1097,7 +1098,7 @@
             var textWrapper = document.querySelector('.ml3');
             textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-            // 第一个动画
+            // 第一個動畫
             var firstAnimation = anime.timeline({ loop: false })
                 .add({
                     targets: '.ml3 .letter',
@@ -1107,14 +1108,14 @@
                     delay: (el, i) => 150 * (i + 1)
                 });
 
-            // 监听第一个动画的完成事件
+            // 等待低一個動畫完成
             firstAnimation.finished.then(function () {
-                // 第一个动画完成后，执行第二个动画
+                // 執行第二個動畫
                 const textContainer = document.getElementById("textContainer");
                 const line = document.getElementById("line");
                 const witch = document.getElementById("witch");
                 const witch_2 = document.getElementById("witch_2");
-                // Simple delay to show the second animation. You can change the delay as needed.
+
                 setTimeout(() => {
                     textContainer.classList.remove("hidden");
                     textContainer.classList.add("shown");
@@ -1130,21 +1131,16 @@
             // licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
             anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
             navigation: true,
-            // other fullpage options can be added here
+
             slidesNavigation: true,
             afterLoad: function (origin, destination, direction) {
-                if (destination.index === 1) { // 第二页的索引为1
+                if (destination.index === 1) { // 第二頁index為1
                     playAnimation();
                     setTimeout(function () {
-                        playAnimation_2(); // 延迟一段时间后播放第二个动画
-                    }, 600); // 设置延迟时间（以毫秒为单位，这里是1秒）
+                        playAnimation_2();
+                    }, 600);
                 }
             },
-            // onLeave: function (origin, destination, direction) {
-            //     if (origin.index === 1) { // 当从第二页离开时
-            //         resetSkills();
-            //     }
-            // },
         });
 
         const aboutTextContent = document.querySelectorAll(".about_text_content");
