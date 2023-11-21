@@ -99,5 +99,3 @@ function clear() {
     document.title = "看不到源代码";
     document.body.innerHTML = Source;
 }
-
-document.getElementById('windowWidthDisplay').innerText = 'Window width: ' + window.innerWidth + 'px';
