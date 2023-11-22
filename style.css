@@ -153,7 +153,7 @@ body {
     width: 96px;
     height: 137px;
     left: 133px;
-    background: url(images/needle-ip6.png) no-repeat;
+    /* background: url(images/needle-ip6.png) no-repeat; */
     background-size: contain;
     transform: rotate(-30deg);
     transform-origin: left top;
@@ -593,7 +593,7 @@ p {
 
 /* 时间线 */
 .timeline__items {
-    width: 60vw !important;
+    width: 70vw !important;
     height: 500px !important;
 }
 
@@ -752,5 +752,25 @@ svg {
         top: 30%;
         width: 60.83334vw;
         transform: translate(-50%, -50%);
+    }
+
+    .fp-bottom {
+        display: none;
+    }
+
+    .fp-right {
+        right: 0 !important;
+    }
+
+    #line {
+        border-right: #ffffff 2px solid;
+    }
+
+    .footer_line {
+        border-right: #ffffff 2px solid;
+    }
+
+    .section:nth-child(5) {
+        background-color: #54477d;
     }
 }
