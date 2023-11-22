@@ -178,17 +178,6 @@ body {
     top: 54% !important;
 }
 
-@media screen and (max-device-width: 700px) {
-    .fp-prev {
-        display: none;
-    }
-
-    /* 调整右侧箭头的位置 */
-    .fp-next {
-        display: none;
-    }
-}
-
 /* fp-slidesNav fp-bottom */
 /* fp-bottom set center */
 .fp-bottom {
@@ -604,7 +593,7 @@ p {
 
 /* 时间线 */
 .timeline__items {
-    width: 74vw !important;
+    width: 60vw !important;
     height: 500px !important;
 }
 
@@ -645,7 +634,7 @@ p {
     top: 80%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 9vw;
+    font-size: 8.5vw;
     color: #eee;
 
 }
@@ -730,4 +719,38 @@ svg {
     position: absolute;
     top: 20%;
     left: 60%;
+}
+
+@media screen and (max-device-width: 700px) {
+    .fp-prev {
+        display: none;
+    }
+
+    /* 调整右侧箭头的位置 */
+    .fp-next {
+        display: none;
+    }
+
+    #timeline_display {
+        display: none;
+    }
+
+    .about_text {
+        font-size: 3vw;
+    }
+
+    .about_text_1 {
+        font-size: 3vw;
+    }
+
+    .about_text_2 {
+        font-size: 3vw;
+    }
+
+    .intro_img {
+        left: 50%;
+        top: 30%;
+        width: 60.83334vw;
+        transform: translate(-50%, -50%);
+    }
 }
