@@ -593,7 +593,7 @@ p {
 
 /* 时间线 */
 .timeline__items {
-    width: 70vw !important;
+    width: 80vw !important;
     height: 500px !important;
 }
 
